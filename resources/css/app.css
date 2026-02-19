@@ -3,7 +3,40 @@
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
+/* Local Fonts */
+@font-face {
+    font-family: 'Allover';
+    src: url('../fonts/allover.otf') format('opentype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Amore';
+    src: url('../fonts/amore.otf') format('opentype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Dastine';
+    src: url('../fonts/dastine.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Motterdam';
+    src: url('../fonts/motterdam.otf') format('opentype');
+    font-display: swap;
+}
+
 @theme {
-    --font-sans:
-        'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    /* === Fonts === */
+    --font-allover: 'Allover', sans-serif;
+    --font-amore: 'Amore', sans-serif;
+    --font-dastine: 'Dastine', sans-serif;
+    --font-motterdam: 'Motterdam', sans-serif;    
+
+    /* === Color Palette (Palet A) === */
+    --color-primary: #212529;
+    --color-secondary: #f8f9fa;
+    --color-accent: #343a40;
 }

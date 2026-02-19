@@ -1,3 +1,6 @@
+import About from '@/Components/About';
+import HeroSection from '@/Components/Hero';
+import Projects from '@/Components/Projects';
 import MainLayout from '@/Layouts/MainLayout';
 import { Helmet } from 'react-helmet';
 
@@ -9,8 +12,9 @@ export default function Home() {
                     <title>Jasa Pembuatan Website Profesional</title>
                     <meta name="description" content="Jasa pembuatan website, web app, dan sistem custom di Indonesia." />
                 </Helmet>
-
-                <h1>Jasa Pembuatan Website</h1>
+                <HeroSection />
+                <Projects />
+                <About />
             </>
         </MainLayout>
     );

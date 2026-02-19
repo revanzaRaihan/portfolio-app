@@ -3,6 +3,11 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 import '../css/app.css';
 
+// Import fonts
+import '@fontsource/inter';
+import '@fontsource/playfair-display';
+import '@fontsource/libre-baskerville';
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
