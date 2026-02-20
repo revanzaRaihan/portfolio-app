@@ -93,8 +93,6 @@ export default function Hero() {
     };
 
     // Create the radial gradient that acts as our spotlight and darkness overlay
-    // Uses the secondary color (#FFFDF1) with low opacity for the center highlight
-    // and the primary color (#0F1215) for the dark surroundings.
     const spotlightBackground = useMotionTemplate`radial-gradient(circle 350px at ${smoothX}px ${smoothY}px, rgba(255, 253, 241, 0.15) 0%, rgba(255, 253, 241, 0.05) 20%, rgba(15, 18, 21, 0.95) 60%, rgba(15, 18, 21, 1) 100%)`;
 
     return (
@@ -117,13 +115,13 @@ export default function Hero() {
             <section 
                 ref={sectionRef} 
                 onMouseMove={handleMouseMove}
-                className="relative flex min-h-[90vh] w-full flex-col items-center justify-center py-32 font-sans md:min-h-[800px]" 
+                className="relative flex min-h-[90vh] w-full flex-col items-center justify-center py-24 md:py-32 font-sans md:min-h-[800px]" 
                 id='home'
             >
 
                 {/* ── Spotlight Overlay ── */}
                 <motion.div
-                    className="pointer-events-none absolute inset-0 z-40 transition-opacity duration-700 ease-in-out"
+                    className="pointer-events-none absolute inset-0 z-40 transition-opacity duration-700 ease-in-out hidden md:block"
                     style={{
                         opacity: isHoveringHeading ? 1 : 0,
                         background: spotlightBackground,
@@ -131,17 +129,17 @@ export default function Hero() {
                 />
 
                 {/* ── Main content ── */}
-                <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-24 px-6 md:gap-40">
+                <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-16 md:gap-40 px-4 md:px-6 mt-16 md:mt-0">
 
                     {/* Heading Section (The Hover Target) */}
                     <div 
-                        className="relative flex w-full max-w-5xl flex-col items-center"
+                        className="relative flex w-full max-w-5xl flex-col items-center px-6 md:px-0"
                         onMouseEnter={() => setIsHoveringHeading(true)}
                         onMouseLeave={() => setIsHoveringHeading(false)}
                     >
 
                         {/* Top Name Line — word-by-word slide up */}
-                        <div className="mb-2 flex w-full items-center justify-between px-2 font-amore text-xs font-medium tracking-[0.4em] md:text-sm lg:text-base">
+                        <div className="mb-2 md:mb-4 flex w-full items-center justify-between px-2 font-amore text-[9px] sm:text-xs md:text-sm lg:text-base font-medium tracking-[0.2em] md:tracking-[0.4em]">
                             <SlideWord delay={0.1}>Revanza</SlideWord>
                             <SlideWord delay={0.4} className="text-[#FF9644]">Raihan</SlideWord>
                             <SlideWord delay={0.7}>Rizqullah</SlideWord>
@@ -150,7 +148,8 @@ export default function Hero() {
                         {/* PORTFOLIO — slide up */}
                         <div className="relative flex w-full justify-center overflow-visible">
                             <SlideWord delay={1.1}>
-                                <h1 className="font-allover text-4xl leading-none tracking-tight uppercase md:text-6xl lg:text-[10rem]">
+                                {/* Adjusted vw sizing to fit perfectly inside the padding */}
+                                <h1 className="font-allover text-[13vw] sm:text-[11vw] md:text-[10vw] lg:text-[11rem] leading-none tracking-tight uppercase">
                                     PORTFOLIO
                                 </h1>
                             </SlideWord>
@@ -158,7 +157,7 @@ export default function Hero() {
                             {/* showcase — wipe left-to-right */}
                             <WipeText
                                 delay={1.7}
-                                className="absolute right-[-4%] bottom-[-20%] z-20 -rotate-[8deg] font-motterdam text-4xl text-[#FF9644] lowercase md:text-6xl lg:text-8xl"
+                                className="absolute right-[-5%] bottom-[-60%] md:right-[-4%] md:bottom-[-20%] z-20 -rotate-[8deg] font-motterdam text-[11vw] sm:text-[9vw] md:text-6xl lg:text-8xl text-[#FF9644] lowercase"
                             >
                                 showcase
                             </WipeText>
@@ -166,11 +165,11 @@ export default function Hero() {
                     </div>
 
                     {/* Sub Heading Section */}
-                    <div className="flex w-full max-w-5xl flex-col items-start justify-between gap-12 md:flex-row md:items-center md:gap-4">
+                    <div className="flex w-full max-w-5xl flex-col items-center justify-center gap-10 md:flex-row md:items-center md:justify-between md:gap-4 mt-8 md:mt-0">
 
                         {/* Left sub-text — letter by letter */}
-                        <div className="w-full text-left md:w-1/3">
-                            <p className="font-dastine text-xs leading-relaxed text-gray-300 md:text-sm">
+                        <div className="w-full text-center md:w-1/3 md:text-left">
+                            <p className="font-dastine text-[11px] md:text-xs lg:text-sm leading-relaxed text-gray-300 px-4 md:px-0">
                                 <LetterByLetter text="to make a functional website" baseDelay={2.1} />
                                 <br />
                                 <LetterByLetter text="with a nice ui and extended scalability" baseDelay={2.5} />
@@ -183,14 +182,14 @@ export default function Hero() {
                                 <img
                                     src="/images/elements/star_deco.png"
                                     alt="Star decoration"
-                                    className="h-[180px] w-[90px] object-contain"
+                                    className="h-[100px] w-[50px] md:h-[180px] md:w-[90px] object-contain"
                                 />
                             </FadeInEl>
                         </div>
 
                         {/* Right sub-text — letter by letter */}
-                        <div className="w-full text-right md:w-1/3">
-                            <p className="font-dastine text-xs leading-relaxed text-gray-300 md:text-sm">
+                        <div className="w-full text-center md:w-1/3 md:text-right">
+                            <p className="font-dastine text-[11px] md:text-xs lg:text-sm leading-relaxed text-gray-300 px-4 md:px-0">
                                 <LetterByLetter text="also making web apps and mobile apps" baseDelay={2.3} />
                                 <br />
                                 <LetterByLetter text="using tech as an excuse to make" baseDelay={2.7} />

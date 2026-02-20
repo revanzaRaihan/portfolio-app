@@ -139,7 +139,7 @@ export default function About() {
                     initial={{ opacity: 0, x: 50 }}
                     animate={isRevealed ? { opacity: 0, x: 300 } : { opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="pointer-events-none absolute -top-12 -right-4 z-30 h-24 w-24 md:-top-35 md:-right-30 md:h-90 md:w-90"
+                    className="pointer-events-none absolute -top-15 -right-10 z-30 h-50 w-50 md:-top-35 md:-right-30 md:h-90 md:w-90"
                 >
                     <motion.img
                         style={{ y: topDecoParallax }}
@@ -154,7 +154,7 @@ export default function About() {
                     initial={{ opacity: 0, x: -50 }}
                     animate={isRevealed ? { opacity: 0, x: -300 } : { opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="pointer-events-none absolute -bottom-12 -left-4 z-30 h-24 w-24 md:-bottom-45 md:-left-30 md:h-100 md:w-100"
+                    className="pointer-events-none absolute -bottom-15 -left-10 z-30 h-50 w-50 md:-bottom-45 md:-left-30 md:h-100 md:w-100"
                 >
                     <motion.img
                         style={{ y: bottomDecoParallax }}
@@ -164,7 +164,8 @@ export default function About() {
                     />
                 </motion.div>
 
-                {/* 16:9 Dark Container (Interactive Card) */}
+                {/* Dark Container (Interactive Card) */}
+                {/* aspect-[4/5] on mobile creates a nice portrait box, md:aspect-video resets to desktop layout */}
                 <FadeInEl delay={0.2} className="w-full">
                     <motion.div
                         onClick={() => setIsRevealed(!isRevealed)}
@@ -172,7 +173,7 @@ export default function About() {
                             backgroundColor: isRevealed ? 'rgba(20, 20, 20, 0.6)' : 'rgba(20, 20, 20, 1)',
                             backdropFilter: isRevealed ? 'blur(8px)' : 'blur(0px)',
                         }}
-                        className="group relative z-20 aspect-video w-full cursor-pointer overflow-hidden border border-white/5 shadow-2xl transition-all duration-500 hover:scale-[1.02]"
+                        className="group relative z-20 aspect-[4/5] sm:aspect-square md:aspect-video w-full cursor-pointer overflow-hidden border border-white/5 shadow-2xl transition-all duration-500 hover:scale-[1.02]"
                     >
                         {/* Hover Cue */}
                         <div className="pointer-events-none absolute inset-0 z-50 flex items-center justify-center bg-black/0 transition-colors duration-500 group-hover:bg-black/20">
@@ -208,12 +209,13 @@ export default function About() {
                             {/* Center Content: Heading */}
                             <div className="absolute inset-0 flex flex-col items-center justify-center">
                                 <div className="relative z-0 flex w-full flex-col items-center">
-                                    <h2 className="flex w-full justify-center font-amore text-5xl leading-none tracking-wider md:text-8xl lg:text-[9rem]">
+                                    {/* Responsive typography scaling using vw on mobile */}
+                                    <h2 className="flex w-full justify-center font-amore text-[12vw] sm:text-[10vw] md:text-8xl lg:text-[9rem] leading-none tracking-wider">
                                         <span className="text-[#FF9644]">Intro</span>
                                         <span className="text-[#FFFDF1]">ducting!</span>
                                     </h2>
-                                    <div className="absolute -right-90 -bottom-3 mt-2 w-full max-w-2xl pr-8 md:pr-16 lg:pr-24">
-                                        <span className="font-motterdam text-2xl tracking-widest text-[#FFFDF1] lowercase md:text-4xl">revanza</span>
+                                    <div className="absolute right-5 -bottom-10 md:-right-90 md:-bottom-3 mt-2 w-full max-w-2xl text-right md:pr-16 lg:pr-24">
+                                        <span className="font-motterdam text-[8vw] sm:text-4xl tracking-widest text-[#FFFDF1] lowercase md:text-4xl">revanza</span>
                                     </div>
                                 </div>
                             </div>
@@ -222,13 +224,14 @@ export default function About() {
                         {/* Persistent Profile Picture */}
                         <motion.div
                             animate={{
+                                // Pushes the image up relatively based on container height
                                 y: isRevealed ? '-20%' : '0%',
                                 scale: isRevealed ? 0.65 : 1,
                             }}
                             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                             className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center"
                         >
-                            <div className="h-32 w-32 overflow-hidden rounded-full border-2 border-[#FFFDF1] bg-zinc-800 shadow-2xl md:h-56 md:w-56 md:border-4">
+                            <div className="h-28 w-28 md:h-56 md:w-56 overflow-hidden rounded-full border-2 border-[#FFFDF1] bg-zinc-800 shadow-2xl md:border-4">
                                 <img
                                     src="/images/elements/me.png"
                                     alt="Revanza"
@@ -244,7 +247,7 @@ export default function About() {
                             transition={{ duration: 0.8, delay: isRevealed ? 0.3 : 0, ease: [0.22, 1, 0.36, 1] }}
                             className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center px-6 md:px-24"
                         >
-                            <p className="mt-20 text-center font-sans text-xs leading-relaxed text-gray-200 md:mt-32 md:text-lg">
+                            <p className="mt-16 text-center font-sans text-[11px] sm:text-xs leading-relaxed text-gray-200 md:mt-32 md:text-lg">
                                 Revanza Raihan Rizqullah, call me Repan or Ian. i was born and raised in the city of Balikpapan in East Province of
                                 Kalimantan. i enjoy process of creating things, but i usually fast to burnt out as well. i enjoy being in the creative
                                 field, to create art even as a web programmer.
@@ -256,15 +259,15 @@ export default function About() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: isRevealed ? 1 : 0 }}
                             transition={{ duration: 0.8, delay: isRevealed ? 0.5 : 0, ease: [0.22, 1, 0.36, 1] }}
-                            className="pointer-events-none absolute bottom-4 left-0 z-30 w-full overflow-hidden md:bottom-8"
+                            className="pointer-events-none absolute bottom-8 left-0 z-30 w-full overflow-hidden md:bottom-8"
                         >
                             <div className="flex w-max animate-marquee items-center">
                                 {marqueeItems.map((tech, idx) => (
-                                    <div key={idx} className="flex w-[80px] justify-center md:w-[150px]">
+                                    <div key={idx} className="flex w-[60px] justify-center md:w-[150px]">
                                         <img
                                             src={tech.src}
                                             alt={tech.name}
-                                            className="h-6 w-auto opacity-50 md:h-8"
+                                            className="h-5 w-auto opacity-50 md:h-8"
                                             style={{ filter: 'brightness(0) invert(1)' }}
                                         />
                                     </div>
