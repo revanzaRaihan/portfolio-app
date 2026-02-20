@@ -34,7 +34,7 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            set -e  # Stop jika ada error
+            set -e
 
             echo "📂 Masuk direktori project..."
             cd ${{ secrets.VPS_PATH }}
@@ -43,9 +43,6 @@ jobs:
             git config --global --add safe.directory ${{ secrets.VPS_PATH }}
             git config core.fileMode false
 
-            # ----------------------------------------
-            # TULIS .env PERTAMA — sebelum apapun
-            # ----------------------------------------
             echo "⚙️ Tulis ulang .env dari secret..."
             cat > .env << 'ENVEOF'
             ${{ secrets.APP_ENV_PRODUCTION }}
@@ -61,14 +58,11 @@ jobs:
             echo "🎨 Install Node dependencies..."
             npm ci --legacy-peer-deps
 
-            # ----------------------------------------
-            # Generate wayfinder types SEBELUM build
-            # ----------------------------------------
             echo "🗺️ Generate wayfinder types..."
             php artisan wayfinder:generate --with-form
 
-            echo "🏗️ Build frontend assets (Vite)..."
-            npm run build
+            echo "🏗️ Build frontend + SSR (Vite)..."
+            npm run build:ssr
 
             echo "🗄️ Jalankan migration..."
             php artisan migrate --force
@@ -88,5 +82,8 @@ jobs:
             echo "🔐 Set permissions..."
             chown -R www-data:www-data storage bootstrap/cache
             chmod -R 775 storage bootstrap/cache
+
+            echo "🔄 Restart SSR server..."
+            pm2 restart portfolio-ssr || pm2 start ${{ secrets.VPS_PATH }}/ecosystem.config.cjs
 
             echo "✅ Deploy selesai!"
