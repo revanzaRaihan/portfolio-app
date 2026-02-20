@@ -238,7 +238,7 @@ export default function ProjectsShowcase() {
                                         className="group relative aspect-square cursor-pointer overflow-hidden bg-zinc-900 md:col-span-2"
                                     >
                                         <img
-                                            src="https://via.placeholder.com/800x800/2A2A2A/888888?text=Project+1+(1:1)"
+                                            src="/images/repo_thumbnail/coming-soon-1.png"
                                             alt="Project 1"
                                             className="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
                                         />
@@ -259,7 +259,7 @@ export default function ProjectsShowcase() {
                                             className="group relative flex-1 cursor-pointer overflow-hidden bg-zinc-900"
                                         >
                                             <img
-                                                src="https://via.placeholder.com/600x800/2A2A2A/888888?text=Project+2+(Portrait)"
+                                                src="/images/repo_thumbnail/coming-soon-2.png"
                                                 alt="Project 2"
                                                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
                                             />
