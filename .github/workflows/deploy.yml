@@ -39,24 +39,33 @@ jobs:
             echo "📂 Masuk direktori project..."
             cd ${{ secrets.VPS_PATH }}
 
-            echo "🔧 Set git safe directory..."
+            echo "🔧 Set git config..."
             git config --global --add safe.directory ${{ secrets.VPS_PATH }}
             git config core.fileMode false
+
+            # ----------------------------------------
+            # TULIS .env PERTAMA — sebelum apapun
+            # ----------------------------------------
+            echo "⚙️ Tulis ulang .env dari secret..."
+            cat > .env << 'ENVEOF'
+            ${{ secrets.APP_ENV_PRODUCTION }}
+            ENVEOF
 
             echo "⬇️ Pull latest code dari GitHub..."
             git fetch origin
             git reset --hard origin/main
 
             echo "📦 Install PHP dependencies..."
-            composer install --no-dev --optimize-autoloader
-
-            echo "⚙️ Tulis ulang .env dari secret..."
-            cat > .env << 'ENVEOF'
-            ${{ secrets.APP_ENV_PRODUCTION }}
-            ENVEOF
+            COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
 
             echo "🎨 Install Node dependencies..."
-            npm ci
+            npm ci --legacy-peer-deps
+
+            # ----------------------------------------
+            # Generate wayfinder types SEBELUM build
+            # ----------------------------------------
+            echo "🗺️ Generate wayfinder types..."
+            php artisan wayfinder:generate --with-form
 
             echo "🏗️ Build frontend assets (Vite)..."
             npm run build
