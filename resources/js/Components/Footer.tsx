@@ -46,6 +46,19 @@ const IconPhone = () => (
     </svg>
 );
 
+const IconYoutube = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.16 1 12 1 12s0 3.84.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.84 23 12 23 12s0-3.84-.46-5.58z"></path>
+        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+    </svg>
+);
+
+const IconGithub = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+    </svg>
+);
+
 const IconMail = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -100,27 +113,41 @@ export default function Contacts() {
 
                 {/* Contacts Details Area */}
                 <FadeInEl delay={0.8} className="w-full max-w-2xl">
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-y-10">
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-y-10 w-full">
                         
                         {/* Instagram */}
                         <a href="https://instagram.com/rvn9lo" target="_blank" rel="noreferrer" className="group flex cursor-pointer items-center gap-4 transition-colors hover:text-[#FF9644] md:justify-start">
                             <IconInstagram />
                             <span className="font-dastine text-sm tracking-wide md:text-base">@rvn9lo</span>
-                            <IconArrowRight className="transition-transform group-hover:translate-x-1" />
+                            <IconArrowRight className="transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:-rotate-45" />
                         </a>
 
                         {/* Phone */}
                         <a href="tel:+6282154311693" className="group flex cursor-pointer items-center gap-4 transition-colors hover:text-[#FF9644] md:justify-end">
                             <IconPhone />
                             <span className="font-dastine text-sm tracking-wide md:text-base">+62 821 5431 1693</span>
-                            <IconArrowRight className="transition-transform group-hover:translate-x-1" />
+                            <IconArrowRight className="transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:-rotate-45" />
+                        </a>
+
+                        {/* YouTube */}
+                        <a href="https://www.youtube.com/@revanzaRaihan" target="_blank" rel="noreferrer" className="group flex cursor-pointer items-center gap-4 transition-colors hover:text-[#FF9644] md:justify-start">
+                            <IconYoutube />
+                            <span className="font-dastine text-sm tracking-wide md:text-base">@revanzaRaihan</span>
+                            <IconArrowRight className="transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:-rotate-45" />
+                        </a>
+
+                        {/* GitHub */}
+                        <a href="https://github.com/revanzaRaihan" target="_blank" rel="noreferrer" className="group flex cursor-pointer items-center gap-4 transition-colors hover:text-[#FF9644] md:justify-end">
+                            <IconGithub />
+                            <span className="font-dastine text-sm tracking-wide md:text-base">revanzaRaihan</span>
+                            <IconArrowRight className="transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:-rotate-45" />
                         </a>
 
                         {/* Email */}
                         <a href="mailto:revanzaraihanrizqullah@gmail.com" className="group flex cursor-pointer items-center gap-4 transition-colors hover:text-[#FF9644] md:col-span-2 md:justify-start">
                             <IconMail />
                             <span className="font-dastine text-sm tracking-wide md:text-base">revanzaraihanrizqullah@gmail.com</span>
-                            <IconArrowRight className="transition-transform group-hover:translate-x-1" />
+                            <IconArrowRight className="transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:-rotate-45" />
                         </a>
                         
                     </div>

@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { motion, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
+
+// --- Shared Animation Helper Components ---
 
 function SlideWord({ children, delay = 0, className = '' }) {
     return (
@@ -67,9 +70,35 @@ function FadeInEl({ delay = 0, className = '', children }) {
 }
 
 export default function Hero() {
+    // --- Spotlight State & Animation Logic ---
+    const sectionRef = useRef(null);
+    const [isHoveringHeading, setIsHoveringHeading] = useState(false);
+
+    // Track mouse coordinates
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    // Add a spring for a smooth, natural trailing effect
+    const smoothX = useSpring(mouseX, { stiffness: 50, damping: 15 });
+    const smoothY = useSpring(mouseY, { stiffness: 50, damping: 15 });
+
+    const handleMouseMove = (e) => {
+        const { current } = sectionRef;
+        if (current) {
+            const rect = current.getBoundingClientRect();
+            // Calculate mouse position relative to the section
+            mouseX.set(e.clientX - rect.left);
+            mouseY.set(e.clientY - rect.top);
+        }
+    };
+
+    // Create the radial gradient that acts as our spotlight and darkness overlay
+    // Uses the secondary color (#FFFDF1) with low opacity for the center highlight
+    // and the primary color (#0F1215) for the dark surroundings.
+    const spotlightBackground = useMotionTemplate`radial-gradient(circle 350px at ${smoothX}px ${smoothY}px, rgba(255, 253, 241, 0.15) 0%, rgba(255, 253, 241, 0.05) 20%, rgba(15, 18, 21, 0.95) 60%, rgba(15, 18, 21, 1) 100%)`;
+
     return (
         <>
-            {/* ── Keyframes ── */}
             <style>{`
                 @keyframes slideUp {
                     from { opacity: 0; transform: translateY(40px); }
@@ -85,25 +114,31 @@ export default function Hero() {
                 }
             `}</style>
 
-            <section className="relative flex min-h-[90vh] w-full flex-col items-center justify-center overflow-hidden bg-[#0F1215] py-32 font-sans text-[#FFFDF1] md:min-h-[800px]" id='home'>
+            <section 
+                ref={sectionRef} 
+                onMouseMove={handleMouseMove}
+                className="relative flex min-h-[90vh] w-full flex-col items-center justify-center py-32 font-sans md:min-h-[800px]" 
+                id='home'
+            >
 
-                {/* ── Background decorations ── */}
-                <div className="pointer-events-none absolute -top-40 -left-40 h-96 w-96 rounded-full bg-[#FF9644] opacity-20 blur-[150px]" />
-                <div className="pointer-events-none absolute -right-40 -bottom-40 h-96 w-96 rounded-full bg-[#FF9644] opacity-20 blur-[150px]" />
-                <div
-                    className="pointer-events-none absolute top-[-5%] right-[-8%] -scale-x-100 font-serif text-[30rem] leading-none text-white/5 blur-[8px] select-none"
-                    aria-hidden="true"
-                >R</div>
-                <div
-                    className="pointer-events-none absolute bottom-[-5%] left-[-4%] font-serif text-[20rem] leading-none text-white/10 blur-[5px] select-none"
-                    aria-hidden="true"
-                >R</div>
+                {/* ── Spotlight Overlay ── */}
+                <motion.div
+                    className="pointer-events-none absolute inset-0 z-40 transition-opacity duration-700 ease-in-out"
+                    style={{
+                        opacity: isHoveringHeading ? 1 : 0,
+                        background: spotlightBackground,
+                    }}
+                />
 
                 {/* ── Main content ── */}
                 <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-24 px-6 md:gap-40">
 
-                    {/* Heading Section */}
-                    <div className="relative flex w-full max-w-5xl flex-col items-center">
+                    {/* Heading Section (The Hover Target) */}
+                    <div 
+                        className="relative flex w-full max-w-5xl flex-col items-center"
+                        onMouseEnter={() => setIsHoveringHeading(true)}
+                        onMouseLeave={() => setIsHoveringHeading(false)}
+                    >
 
                         {/* Top Name Line — word-by-word slide up */}
                         <div className="mb-2 flex w-full items-center justify-between px-2 font-amore text-xs font-medium tracking-[0.4em] md:text-sm lg:text-base">
