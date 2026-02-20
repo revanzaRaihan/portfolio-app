@@ -52,6 +52,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
             <Navbar />
             
             <main className="relative z-10 flex-grow">
+                <title>Portfolio Page</title>
                 {children}
             </main>
             
