@@ -1,42 +1,49 @@
 <div align="center">
 
-<img src="[https://capsule-render.vercel.app/api?type=waving&color=0f1215&height=250&section=header&text=PORTFOLIO&fontSize=80&fontColor=FF9644&desc=Revanza%20Raihan%20Rizqullah&descSize=20&descColor=ffffff](https://www.google.com/search?q=https://capsule-render.vercel.app/api%3Ftype%3Dwaving%26color%3D0f1215%26height%3D250%26section%3Dheader%26text%3DPORTFOLIO%26fontSize%3D80%26fontColor%3DFF9644%26desc%3DRevanza%2520Raihan%2520Rizqullah%26descSize%3D20%26descColor%3Dffffff)" width="100%" />
+# 🌐 Portfolio App
 
-*to make a functional website with a nice ui and extended scalability*
+### A modern personal portfolio — built with Laravel & React (Inertia.js)
 
-
-
-
-
-*using tech as an excuse to make difficult things easier*
+[![Live Site](https://img.shields.io/badge/🔗%20Live%20Site-lenallen.my.id-6366f1?style=for-the-badge)](https://lenallen.my.id)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
 </div>
 
-> **✨ Showcase & Architecture**
-> A full-stack personal portfolio bridging seamless single-page application experiences without the complexity of a separate API. Built with a modern stack combining **Laravel** on the backend and **React + TypeScript** on the frontend, smoothly orchestrated by **Inertia.js**.
+---
 
-## 🛠️ The Tech Stack
+## ✨ About
 
-| Layer | Technology | Description |
-| --- | --- | --- |
-| **Backend** | `Laravel (PHP)` | Robust routing, database management, and controllers. |
-| **Frontend** | `React + TypeScript` | Type-safe, component-driven UI with fluid animations. |
-| **Bridge** | `Inertia.js` | Monolith architecture with an SPA feel. |
-| **Styling** | `Tailwind CSS` | Utility-first, highly customizable styling framework. |
-| **Build Tool** | `Vite` | Lightning-fast HMR and optimized production builds. |
-| **CI/CD** | `GitHub Actions` | Automated testing and deployment pipelines. |
-| **Deployment** | `PM2` | Advanced process manager for production environments. |
+A full-stack personal portfolio application showcasing projects, skills, and experience. Built with a modern stack combining **Laravel** on the backend and **React + TypeScript** on the frontend, bridged seamlessly with **Inertia.js** for a smooth single-page app experience — without the complexity of a separate API.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Backend** | Laravel (PHP) |
+| **Frontend** | React + TypeScript |
+| **Bridge** | Inertia.js |
+| **Build Tool** | Vite |
+| **Styling** | Tailwind CSS |
+| **Linting** | ESLint + Prettier |
+| **Process Manager** | PM2 (ecosystem.config.cjs) |
+| **CI/CD** | GitHub Actions |
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-Ensure you have the following installed on your local machine:
-
-* **PHP** `^8.2`
-* **Node.js** `^18`
-* **Composer** & **NPM**
-* **MySQL / SQLite**
+- PHP `^8.2`
+- Composer
+- Node.js `^18`
+- A database (MySQL / SQLite)
 
 ### Installation
 
@@ -45,57 +52,76 @@ Ensure you have the following installed on your local machine:
 git clone https://github.com/revanzaRaihan/portfolio-app.git
 cd portfolio-app
 
-# 2. Install dependencies (Backend & Frontend)
+# 2. Install PHP dependencies
 composer install
+
+# 3. Install Node dependencies
 npm install
 
-# 3. Environment setup
+# 4. Set up environment
 cp .env.example .env
 php artisan key:generate
 
-# 4. Database configuration (.env) & Migrations
+# 5. Configure your database in .env, then run migrations
 php artisan migrate
 
-# 5. Build assets & Run servers
+# 6. Build frontend assets
 npm run build
-php artisan serve
-
 ```
 
-*Open [http://localhost:8000](https://www.google.com/search?q=http://localhost:8000) in your browser.*
+### Running Locally
+
+```bash
+# Start the Laravel dev server
+php artisan serve
+
+# Start the Vite dev server (in a separate terminal)
+npm run dev
+```
+
+Then open [http://localhost:8000](http://localhost:8000) in your browser.
+
+---
 
 ## 📁 Project Structure
 
-```text
-portfolio-app/
-├── app/                  # ⚙️ Laravel Application (Models, Controllers)
-├── resources/
-│   ├── js/               # ⚛️ React + TypeScript Frontend
-│   └── views/            # 📄 Blade Entry Point (app.blade.php)
-├── routes/               # 🛣️ Web & API Routes
-├── database/             # 🗄️ Migrations & Seeders
-├── .github/workflows/    # 🤖 CI/CD Pipelines
-└── ecosystem.config.cjs  # 🚀 PM2 Production Config
-
 ```
+portfolio-app/
+├── app/                  # Laravel application (Models, Controllers, etc.)
+├── resources/
+│   ├── js/               # React + TypeScript frontend
+│   └── views/            # Blade entry point
+├── routes/               # Web & API routes
+├── database/             # Migrations & seeders
+├── public/               # Static assets
+├── .github/workflows/    # CI/CD pipelines
+└── vite.config.ts        # Vite configuration
+```
+
+---
 
 ## ⚙️ Deployment
 
-This project utilizes **PM2** to manage the production environment. The ecosystem configuration is optimized and ready out of the box.
+This project uses **PM2** for process management in production. The `ecosystem.config.cjs` file is pre-configured for easy deployment.
 
 ```bash
-# Build production assets
+# Build for production
 npm run build
 
-# Boot the application using PM2
+# Start with PM2
 pm2 start ecosystem.config.cjs
-
 ```
+
+---
 
 ## 📄 License
 
-This project is open-source and distributed under the [MIT License](https://www.google.com/search?q=LICENSE).
+This project is open source and available under the [MIT License](LICENSE).
+
+---
 
 <div align="center">
-<img src="[https://img.shields.io/badge/Made%20with%20](https://www.google.com/search?q=https://img.shields.io/badge/Made%2520with%2520)🖤%20by-Revanza%20Raihan-0f1215?style=flat-square&color=FF9644" alt="Made by Revanza Raihan"/>
+
+Made with ❤️ by [revanzaRaihan](https://github.com/revanzaRaihan) · [lenallen.my.id](https://lenallen.my.id)
+
 </div>
