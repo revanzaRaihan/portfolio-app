@@ -12,3 +12,5 @@ Route::get('/about', fn () => Inertia::render('About'));
 Route::get('/services', fn () => Inertia::render('Services'));
 Route::get('/portfolio', fn () => Inertia::render('Portfolio'));
 Route::get('/contact', fn () => Inertia::render('Contact'));
+
+Route::get('/sitemap.xml', [App\Http\Controllers\SitemapController::class, 'index']);
